@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Battle.net
+Exec=env "/home/mergen/PortProton/data/scripts/start.sh" "/home/mergen/PortProton/data/prefixes/BATTLE_NET/drive_c/Program Files (x86)/Battle.net/Battle.net.exe"
+Type=Application
+Categories=Game
+StartupNotify=true
+Path=/home/mergen/PortProton/data/scripts/
+Icon=/home/mergen/PortProton/data/img/Battle.net.png

@@ -1,17 +1,31 @@
 version: '3.8'
-
+networks:
+  dev:
 services:
-  postgres:
+  
+  db:
     image: postgres:latest
-    container_name: postgres
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: dbname
     ports:
       - "5432:5432"
+    networks:
+      - dev
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://user:mysecretpassword@db:5432/dbname"
+    ports:
+      - "8000:8000"
+    networks:
+      - dev
+    depends_on:
+      - db
 
 volumes:
   postgres_data:
